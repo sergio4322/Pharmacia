@@ -11,7 +11,7 @@ class AnalisisApiType extends AnalisisType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PharmaciaBundle\Entity\Category',
+            'data_class' => 'PharmaciaBundle\Entity\Analisis',
             'csrf_protection' => false
         ));
     }

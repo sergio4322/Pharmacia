@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="analisis")
  * @ORM\Entity(repositoryClass="PharmaciaBundle\Repository\AnalisisRepository")
  */
-class Analisis
+class Analisis implements \JsonSerializable
 {
 
     
@@ -35,12 +35,12 @@ class Analisis
 
 
     /**
-     * @var ArrayCollection
+     * @var arrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Paciente" , mappedBy="analisis")
+     * @ORM\ManyToMany(targetEntity="Paciente" , mappedBy="Analisis")
      * @ORM\JoinTable(name="paciente_analisis")
      */
-    private $paciente=null;
+    private $paciente = null ;
 
     public function __construct()
     {
@@ -51,6 +51,8 @@ class Analisis
     {
         return $this->paciente;
     }
+
+    
 
     /**
      * Get id
@@ -84,6 +86,14 @@ class Analisis
     public function getName()
     {
         return $this->name;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+                'id' => $this->getId(),
+                'name' => $this->getName()
+                ];
     }
 
     public function __toString(){

@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class AnalisisController extends Controller
 {
     /**
-     * Lists all analisi entities.
+     * Lists all analisis entities.
      *
      * @Route("/", name="analisis_index")
      * @Method("GET")
@@ -24,35 +24,35 @@ class AnalisisController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $analises = $em->getRepository('PharmaciaBundle:Analisis')->findAll();
+        $analisis = $em->getRepository('PharmaciaBundle:Analisis')->findAll();
 
         return $this->render('analisis/index.html.twig', array(
-            'analises' => $analises,
+            'analises' => $analisis,
         ));
     }
 
     /**
-     * Creates a new analisi entity.
+     * Creates a new analisis entity.
      *
      * @Route("/new", name="analisis_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $analisi = new Analisi();
-        $form = $this->createForm('PharmaciaBundle\Form\AnalisisType', $analisi);
+        $analisis = new Analisis();
+        $form = $this->createForm('PharmaciaBundle\Form\AnalisisType', $analisis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($analisi);
+            $em->persist($analisis);
             $em->flush();
 
-            return $this->redirectToRoute('analisis_show', array('id' => $analisi->getId()));
+            return $this->redirectToRoute('analisis_show', array('id' => $analisis->getId()));
         }
 
         return $this->render('analisis/new.html.twig', array(
-            'analisi' => $analisi,
+            'analisis' => $analisis,
             'form' => $form->createView(),
         ));
     }
@@ -63,55 +63,55 @@ class AnalisisController extends Controller
      * @Route("/{id}", name="analisis_show")
      * @Method("GET")
      */
-    public function showAction(Analisis $analisi)
+    public function showAction(Analisis $analisis)
     {
-        $deleteForm = $this->createDeleteForm($analisi);
+        $deleteForm = $this->createDeleteForm($analisis);
 
         return $this->render('analisis/show.html.twig', array(
-            'analisi' => $analisi,
+            'analisis' => $analisis,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing analisi entity.
+     * Displays a form to edit an existing analisis entity.
      *
      * @Route("/{id}/edit", name="analisis_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Analisis $analisi)
+    public function editAction(Request $request, Analisis $analisis)
     {
-        $deleteForm = $this->createDeleteForm($analisi);
-        $editForm = $this->createForm('PharmaciaBundle\Form\AnalisisType', $analisi);
+        $deleteForm = $this->createDeleteForm($analisis);
+        $editForm = $this->createForm('PharmaciaBundle\Form\AnalisisType', $analisis);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('analisis_edit', array('id' => $analisi->getId()));
+            return $this->redirectToRoute('analisis_edit', array('id' => $analisis->getId()));
         }
 
         return $this->render('analisis/edit.html.twig', array(
-            'analisi' => $analisi,
+            'analisis' => $analisis,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a analisi entity.
+     * Deletes a analisis entity.
      *
      * @Route("/{id}", name="analisis_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Analisis $analisi)
+    public function deleteAction(Request $request, Analisis $analisis)
     {
-        $form = $this->createDeleteForm($analisi);
+        $form = $this->createDeleteForm($analisis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($analisi);
+            $em->remove($analisis);
             $em->flush();
         }
 
@@ -119,16 +119,16 @@ class AnalisisController extends Controller
     }
 
     /**
-     * Creates a form to delete a analisi entity.
+     * Creates a form to delete a analisis entity.
      *
-     * @param Analisis $analisi The analisi entity
+     * @param Analisis $analisis The analisis entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Analisis $analisi)
+    private function createDeleteForm(Analisis $analisis)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('analisis_delete', array('id' => $analisi->getId())))
+            ->setAction($this->generateUrl('analisis_delete', array('id' => $analisis->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

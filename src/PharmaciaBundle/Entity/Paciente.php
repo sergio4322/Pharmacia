@@ -12,8 +12,25 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="paciente")
  * @ORM\Entity(repositoryClass="PharmaciaBundle\Repository\PacienteRepository")
  */
-class Paciente
+class Paciente implements \JsonSerializable
 {
+    /**
+     * @var arrayColection
+     * @ORM\ManyToMany(targetEntity="Analisis", inversedBy="Paciente")
+     * @ORM\JoinTable (name="paciente_analisis")
+     */
+    private $analisis = null;
+
+    public function __construct()
+    {
+        $this->analisis = new ArrayCollection();
+    }
+    /**
+      * @return ArrayCollection
+      */
+    public function getAnalisis(){
+        return $this->analisis;
+    }
     
     /**
      * @var int
@@ -68,22 +85,6 @@ class Paciente
      */
     private $observations;
 
-
-    /**
-     * @var arrayColection
-     * @ORM\ManyToMany(targetEntity="Analisis", inversedBy="Paciente")
-     * @ORM\JoinTable (name="paciente_analisis")
-     */
-    private $analisis=null;
-
-    public function __construct()
-    {
-        $this->analisis = new ArrayCollection();
-    }
-
-    public function getAnalisis(){
-        return $this->analisis;
-    }
 
     /**
      * Get id
@@ -215,21 +216,6 @@ class Paciente
         return $this->idType;
     }
 
-    /**
-     * Set analisis
-     *
-     * @param string $analisis
-     *
-     * @return Paciente
-     */
-    public function setAnalisis($analisis)
-    {
-        $this->analisis = $analisis;
-
-        return $this;
-    }
-
-    
 
     /**
      * Set observations
@@ -255,6 +241,19 @@ class Paciente
         return $this->observations;
     }
 
+    public function jsonSerialize()
+    {
+        return [
+                'id' => $this->getId(),
+                'name' => $this->getName(),
+                'lastName' => $this->getLastName(),
+                'age' => $this->getAge(),
+                'idNumbre' => $this->getIdNumber(),
+                'idType' => $this->getIdType(),
+                'analisis' => $this->getAnalisis(),
+                'observations' => $this->getObservations()
+                ];
+    }
     public function __toString(){
         return $this->name;
     }
