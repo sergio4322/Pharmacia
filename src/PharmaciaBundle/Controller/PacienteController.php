@@ -32,6 +32,19 @@ class PacienteController extends Controller
     }
 
     /**
+     * @Route("/pacient/view/{id}", name="pacientDetail")
+     */
+    public function viewAction($id)
+    {
+
+       $producto = $this->getDoctrine()
+                ->getRepository('PharmaciaBundle:Paciente')
+                ->find($id);
+
+        return $producto;
+    }
+
+    /**
      * Creates a new paciente entity.
      *
      * @Route("/new", name="paciente_new")

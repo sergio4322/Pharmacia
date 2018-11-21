@@ -1,11 +1,8 @@
 <?php
-
 namespace PharmaciaBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Analisis
  *
@@ -14,7 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Analisis implements \JsonSerializable
 {
-
     
     /**
      * @var int
@@ -24,36 +20,28 @@ class Analisis implements \JsonSerializable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-
-
     /**
      * @var arrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Paciente" , mappedBy="Analisis")
+     * @ORM\ManyToMany(targetEntity="Paciente" , mappedBy="analisis")
      * @ORM\JoinTable(name="paciente_analisis")
      */
     private $paciente = null ;
-
     public function __construct()
     {
         $this->paciente = new ArrayCollection();
     }
-
     public function getPaciente()
     {
         return $this->paciente;
     }
-
     
-
     /**
      * Get id
      *
@@ -63,7 +51,6 @@ class Analisis implements \JsonSerializable
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -74,10 +61,8 @@ class Analisis implements \JsonSerializable
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -87,7 +72,6 @@ class Analisis implements \JsonSerializable
     {
         return $this->name;
     }
-
     public function jsonSerialize()
     {
         return [
@@ -95,9 +79,7 @@ class Analisis implements \JsonSerializable
                 'name' => $this->getName()
                 ];
     }
-
     public function __toString(){
         return $this->name;
     }
 }
-

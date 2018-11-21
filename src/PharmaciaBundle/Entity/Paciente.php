@@ -1,11 +1,8 @@
 <?php
-
 namespace PharmaciaBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Paciente
  *
@@ -20,7 +17,6 @@ class Paciente implements \JsonSerializable
      * @ORM\JoinTable (name="paciente_analisis")
      */
     private $analisis = null;
-
     public function __construct()
     {
         $this->analisis = new ArrayCollection();
@@ -40,52 +36,43 @@ class Paciente implements \JsonSerializable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
-
     /**
      * @var int
      *
      * @ORM\Column(name="age", type="integer")
      */
     private $age;
-
     /**
      * @var string
      *
      * @ORM\Column(name="idNumber", type="string", length=255)
      */
     private $idNumber;
-
     /**
      * @var string
      *
      * @ORM\Column(name="idType", type="string", length=255)
      */
     private $idType;
-
     
-
     /**
      * @var string
      *
      * @ORM\Column(name="observations", type="text")
      */
     private $observations;
-
-
     /**
      * Get id
      *
@@ -95,7 +82,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -106,10 +92,8 @@ class Paciente implements \JsonSerializable
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -119,7 +103,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->name;
     }
-
     /**
      * Set lastName
      *
@@ -130,10 +113,8 @@ class Paciente implements \JsonSerializable
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * Get lastName
      *
@@ -143,7 +124,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->lastName;
     }
-
     /**
      * Set age
      *
@@ -154,10 +134,8 @@ class Paciente implements \JsonSerializable
     public function setAge($age)
     {
         $this->age = $age;
-
         return $this;
     }
-
     /**
      * Get age
      *
@@ -167,7 +145,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->age;
     }
-
     /**
      * Set idNumber
      *
@@ -178,10 +155,8 @@ class Paciente implements \JsonSerializable
     public function setIdNumber($idNumber)
     {
         $this->idNumber = $idNumber;
-
         return $this;
     }
-
     /**
      * Get idNumber
      *
@@ -191,7 +166,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->idNumber;
     }
-
     /**
      * Set idType
      *
@@ -202,10 +176,8 @@ class Paciente implements \JsonSerializable
     public function setIdType($idType)
     {
         $this->idType = $idType;
-
         return $this;
     }
-
     /**
      * Get idType
      *
@@ -215,8 +187,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->idType;
     }
-
-
     /**
      * Set observations
      *
@@ -227,10 +197,8 @@ class Paciente implements \JsonSerializable
     public function setObservations($observations)
     {
         $this->observations = $observations;
-
         return $this;
     }
-
     /**
      * Get observations
      *
@@ -240,7 +208,6 @@ class Paciente implements \JsonSerializable
     {
         return $this->observations;
     }
-
     public function jsonSerialize()
     {
         return [

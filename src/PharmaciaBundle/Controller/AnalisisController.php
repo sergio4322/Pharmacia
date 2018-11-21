@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Analisi controller.
+ * Analisis controller.
  *
  * @Route("analisis")
  */
@@ -27,7 +27,7 @@ class AnalisisController extends Controller
         $analisis = $em->getRepository('PharmaciaBundle:Analisis')->findAll();
 
         return $this->render('analisis/index.html.twig', array(
-            'analises' => $analisis,
+            'analisis' => $analisis,
         ));
     }
 

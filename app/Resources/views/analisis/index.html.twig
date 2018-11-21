@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for analisis in analises %}
+        {% for analisis in analisis %}
             <tr>
                 <td><a href="{{ path('analisis_show', { 'id': analisis.id }) }}">{{ analisis.id }}</a></td>
                 <td>{{ analisis.name }}</td>
