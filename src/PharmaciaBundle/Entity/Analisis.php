@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Analisis
 {
+
+    
     /**
      * @var int
      *
@@ -28,6 +30,25 @@ class Analisis
      */
     private $name;
 
+
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Paciente" , mappedBy="analisis")
+     * @ORM\JoinTable(name="paciente_analisis")
+     */
+    private $paciente=null;
+
+    public function __construct()
+    {
+        $this->paciente = new ArrayCollection();
+    }
+
+    public function getPaciente()
+    {
+        return $this->paciente;
+    }
 
     /**
      * Get id
@@ -60,6 +81,10 @@ class Analisis
      */
     public function getName()
     {
+        return $this->name;
+    }
+
+    public function __toString(){
         return $this->name;
     }
 }

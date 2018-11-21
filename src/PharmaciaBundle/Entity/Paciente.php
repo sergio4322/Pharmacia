@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Paciente
 {
+    
     /**
      * @var int
      *
@@ -56,12 +57,7 @@ class Paciente
      */
     private $idType;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="analisis", type="text")
-     */
-    private $analisis;
+    
 
     /**
      * @var string
@@ -70,6 +66,22 @@ class Paciente
      */
     private $observations;
 
+
+    /**
+     * @var arrayColection
+     * @ORM\ManyToMany(targetEntity="Analisis", inversedBy="Paciente")
+     * @ORM\JoinTable (name="paciente_analisis")
+     */
+    private $analisis=null;
+
+    public function __construct()
+    {
+        $this->analisis = new ArrayCollection();
+    }
+
+    public function getAnalisis(){
+        return $this->analisis;
+    }
 
     /**
      * Get id
@@ -215,15 +227,7 @@ class Paciente
         return $this;
     }
 
-    /**
-     * Get analisis
-     *
-     * @return string
-     */
-    public function getAnalisis()
-    {
-        return $this->analisis;
-    }
+    
 
     /**
      * Set observations
@@ -247,6 +251,10 @@ class Paciente
     public function getObservations()
     {
         return $this->observations;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 }
 
